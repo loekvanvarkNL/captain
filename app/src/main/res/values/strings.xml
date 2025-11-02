@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TeamCaptain</string>
+
+    <!-- Navigation -->
+    <string name="nav_dashboard">Dashboard</string>
+    <string name="nav_team">Team</string>
+    <string name="nav_matches">Matches</string>
+    <string name="nav_attendance">Attendance</string>
+    <string name="nav_lineup">Lineup</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_title">Dashboard</string>
+    <string name="dashboard_next_match">Next Match</string>
+    <string name="dashboard_team_overview">Team Overview</string>
+    <string name="dashboard_recent_activity">Recent Activity</string>
+    <string name="dashboard_no_matches">No upcoming matches</string>
+
+    <!-- Team Management -->
+    <string name="team_title">My Team</string>
+    <string name="team_add_player">Add Player</string>
+    <string name="team_edit_player">Edit Player</string>
+    <string name="team_player_name">Player Name</string>
+    <string name="team_player_number">Number</string>
+    <string name="team_preferred_positions">Preferred Positions</string>
+    <string name="team_no_players">No players yet. Add your first player!</string>
+    <string name="team_player_count">%d players</string>
+    <string name="team_name_required">Name is required</string>
+    <string name="team_empty_state">No players in your team</string>
+    <string name="team_empty_state_hint">Tap the + button to add your first player</string>
+    <string name="team_player_details">Player Details</string>
+    <string name="team_delete_player_title">Delete Player?</string>
+    <string name="team_delete_player_message">Are you sure you want to delete %s?</string>
+
+    <!-- Positions -->
+    <string name="position_goalkeeper">Goalkeeper</string>
+    <string name="position_defender">Defender</string>
+    <string name="position_midfielder">Midfielder</string>
+    <string name="position_forward">Forward</string>
+
+    <!-- Matches -->
+    <string name="matches_title">Matches</string>
+    <string name="matches_add">Add Match</string>
+    <string name="matches_add_match">Add Match</string>
+    <string name="matches_opponent">Opponent</string>
+    <string name="matches_date">Date</string>
+    <string name="matches_time">Time</string>
+    <string name="matches_location">Location</string>
+    <string name="matches_no_matches">No matches scheduled</string>
+    <string name="matches_upcoming">Upcoming</string>
+    <string name="matches_past">Past</string>
+    <string name="matches_no_upcoming">No upcoming matches</string>
+    <string name="matches_no_past">No past matches</string>
+    <string name="matches_opponent_required">Opponent name is required</string>
+    <string name="matches_select_date">Select date</string>
+    <string name="matches_select_time">Select time</string>
+    <string name="matches_home_match">Home Match</string>
+    <string name="matches_number_of_blocks">Number of Blocks</string>
+    <string name="matches_block_duration">Block Duration (minutes)</string>
+    <string name="matches_block_duration_hint">Duration of each substitution block</string>
+    <string name="matches_match_details">Match Details</string>
+    <string name="matches_delete_match_title">Delete Match?</string>
+    <string name="matches_delete_match_message">Are you sure you want to delete the match vs %s?</string>
+
+    <!-- Attendance -->
+    <string name="attendance_title">Attendance</string>
+    <string name="attendance_present">Present</string>
+    <string name="attendance_absent">Absent</string>
+    <string name="attendance_unknown">Unknown</string>
+    <string name="attendance_mark_all_present">Mark All Present</string>
+    <string name="attendance_count">%d of %d players</string>
+    <string name="attendance_title_with_count">Attendance (%d)</string>
+    <string name="attendance_no_players">No players in your team. Add players first!</string>
+
+    <!-- Lineup -->
+    <string name="lineup_title">Starting Lineup</string>
+    <string name="lineup_select_formation">Select Formation</string>
+    <string name="lineup_field_players">Field Players (5)</string>
+    <string name="lineup_goalkeeper">Goalkeeper (1)</string>
+    <string name="lineup_substitutes">Substitutes</string>
+    <string name="lineup_match_blocks">Match Blocks</string>
+    <string name="lineup_block_duration">Block Duration (minutes)</string>
+    <string name="lineup_coming_soon">Lineup builder coming soon in Phase 4!</string>
+
+    <!-- Common -->
+    <string name="common_save">Save</string>
+    <string name="common_cancel">Cancel</string>
+    <string name="common_delete">Delete</string>
+    <string name="common_edit">Edit</string>
+    <string name="common_add">Add</string>
+    <string name="common_back">Back</string>
+    <string name="common_search">Search</string>
+    <string name="common_ok">OK</string>
+    <string name="action_save">Save</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_add">Add</string>
+    <string name="action_back">Back</string>
+    <string name="action_search">Search</string>
+
+    <!-- Content descriptions -->
+    <string name="cd_add_button">Add button</string>
+    <string name="cd_back_button">Back button</string>
+    <string name="cd_menu_button">Menu button</string>
+    <string name="cd_player_avatar">Player avatar</string>
+</resources>
