@@ -1,0 +1,16 @@
+TeamCaptain
+Copyright 2025 TeamCaptain Contributors
+
+This product includes software developed as part of the TeamCaptain project.
+
+This software uses the following third-party libraries:
+
+- Kotlin (https://kotlinlang.org/) - Apache License 2.0
+- Android Jetpack libraries (https://developer.android.com/jetpack) - Apache License 2.0
+- Jetpack Compose (https://developer.android.com/jetpack/compose) - Apache License 2.0
+- Hilt/Dagger (https://dagger.dev/) - Apache License 2.0
+- Room (https://developer.android.com/training/data-storage/room) - Apache License 2.0
+- AppAuth-Android (https://github.com/openid/AppAuth-Android) - Apache License 2.0
+- Coil (https://coil-kt.github.io/coil/) - Apache License 2.0
+- Material Design Components (https://material.io/) - Apache License 2.0
+- AndroidX Security Crypto (https://developer.android.com/jetpack/androidx/releases/security) - Apache License 2.0
