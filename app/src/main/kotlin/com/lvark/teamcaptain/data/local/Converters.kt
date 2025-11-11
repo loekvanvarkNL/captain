@@ -1,6 +1,7 @@
 package com.lvark.teamcaptain.data.local
 
 import androidx.room.TypeConverter
+import com.lvark.teamcaptain.model.entity.AuthProvider
 import com.lvark.teamcaptain.model.entity.Position
 import com.lvark.teamcaptain.model.entity.PreferredFoot
 
@@ -33,6 +34,20 @@ class Converters {
             PreferredFoot.valueOf(preferredFootString)
         } catch (e: IllegalArgumentException) {
             PreferredFoot.RIGHT
+        }
+    }
+
+    @TypeConverter
+    fun fromAuthProvider(authProvider: AuthProvider): String {
+        return authProvider.name
+    }
+
+    @TypeConverter
+    fun toAuthProvider(authProviderString: String): AuthProvider {
+        return try {
+            AuthProvider.valueOf(authProviderString)
+        } catch (e: IllegalArgumentException) {
+            AuthProvider.GOOGLE
         }
     }
 }

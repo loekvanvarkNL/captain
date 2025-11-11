@@ -7,10 +7,12 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.lvark.teamcaptain.model.entity.User
 import com.lvark.teamcaptain.ui.screens.AddMatchScreen
 import com.lvark.teamcaptain.ui.screens.AddPlayerScreen
 import com.lvark.teamcaptain.ui.screens.AttendanceScreen
 import com.lvark.teamcaptain.ui.screens.DashboardScreen
+import com.lvark.teamcaptain.ui.screens.LoginScreen
 import com.lvark.teamcaptain.ui.screens.MatchDetailScreen
 import com.lvark.teamcaptain.ui.screens.MatchListScreen
 import com.lvark.teamcaptain.ui.screens.PlayerDetailScreen
@@ -20,13 +22,24 @@ import com.lvark.teamcaptain.ui.screens.TeamListScreen
 @Suppress("FunctionName")
 fun TeamCaptainNavHost(
     navController: NavHostController,
+    currentUser: User?,
     modifier: Modifier = Modifier,
 ) {
+    val startDestination =
+        if (currentUser == null) {
+            Screen.Login.route
+        } else {
+            Screen.Dashboard.route
+        }
+
     NavHost(
         navController = navController,
-        startDestination = Screen.Dashboard.route,
+        startDestination = startDestination,
         modifier = modifier,
     ) {
+        composable(Screen.Login.route) {
+            LoginScreen()
+        }
         composable(Screen.Dashboard.route) {
             DashboardScreen(
                 onNavigateToTeam = { navController.navigate(Screen.Team.route) },

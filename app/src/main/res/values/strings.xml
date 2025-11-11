@@ -108,6 +108,15 @@
     <string name="action_back">Back</string>
     <string name="action_search">Search</string>
 
+    <!-- Authentication -->
+    <string name="auth_sign_in_with_google">Sign in with Google</string>
+    <string name="auth_sign_in_with_github">Sign in with GitHub</string>
+    <string name="auth_welcome_title">Welcome to TeamCaptain</string>
+    <string name="auth_welcome_subtitle">Manage your junior football team</string>
+    <string name="auth_logout">Sign out</string>
+    <string name="auth_error">Authentication failed</string>
+    <string name="auth_logout_confirm">Are you sure you want to sign out?</string>
+
     <!-- Content descriptions -->
     <string name="cd_add_button">Add button</string>
     <string name="cd_back_button">Back button</string>

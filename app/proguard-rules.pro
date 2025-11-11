@@ -41,3 +41,10 @@
 # Coroutines
 -keepnames class kotlinx.coroutines.internal.MainDispatcherFactory {}
 -keepnames class kotlinx.coroutines.CoroutineExceptionHandler {}
+
+# Google Tink (used by security-crypto) - ignore missing error-prone annotations
+-dontwarn com.google.errorprone.annotations.**
+
+# AppAuth
+-keep class net.openid.appauth.** { *; }
+-dontwarn net.openid.appauth.**

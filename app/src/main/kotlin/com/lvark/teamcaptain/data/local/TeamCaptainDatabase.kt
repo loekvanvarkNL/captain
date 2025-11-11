@@ -7,6 +7,7 @@ import com.lvark.teamcaptain.model.entity.Attendance
 import com.lvark.teamcaptain.model.entity.LineupAssignment
 import com.lvark.teamcaptain.model.entity.Match
 import com.lvark.teamcaptain.model.entity.Player
+import com.lvark.teamcaptain.model.entity.User
 
 @Database(
     entities = [
@@ -14,8 +15,9 @@ import com.lvark.teamcaptain.model.entity.Player
         Match::class,
         Attendance::class,
         LineupAssignment::class,
+        User::class,
     ],
-    version = 2,
+    version = 3,
     exportSchema = true,
 )
 @TypeConverters(Converters::class)
@@ -27,6 +29,8 @@ abstract class TeamCaptainDatabase : RoomDatabase() {
     abstract fun attendanceDao(): AttendanceDao
 
     abstract fun lineupAssignmentDao(): LineupAssignmentDao
+
+    abstract fun userDao(): UserDao
 
     companion object {
         const val DATABASE_NAME = "team_captain.db"

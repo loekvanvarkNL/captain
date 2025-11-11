@@ -85,6 +85,9 @@ lint-results.xml
 # Room
 schemas/
 
+# Authentication secrets
+app/src/main/res/values/auth_config.xml
+
 # OS-specific files
 .DS_Store
 .DS_Store?

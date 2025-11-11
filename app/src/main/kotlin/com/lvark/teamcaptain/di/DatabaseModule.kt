@@ -7,6 +7,7 @@ import com.lvark.teamcaptain.data.local.LineupAssignmentDao
 import com.lvark.teamcaptain.data.local.MatchDao
 import com.lvark.teamcaptain.data.local.PlayerDao
 import com.lvark.teamcaptain.data.local.TeamCaptainDatabase
+import com.lvark.teamcaptain.data.local.UserDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -49,5 +50,10 @@ object DatabaseModule {
     @Provides
     fun provideLineupAssignmentDao(database: TeamCaptainDatabase): LineupAssignmentDao {
         return database.lineupAssignmentDao()
+    }
+
+    @Provides
+    fun provideUserDao(database: TeamCaptainDatabase): UserDao {
+        return database.userDao()
     }
 }

@@ -23,6 +23,9 @@ android {
             useSupportLibrary = true
         }
 
+        // AppAuth redirect URI scheme for OAuth
+        manifestPlaceholders["appAuthRedirectScheme"] = "com.lvark.teamcaptain"
+
         // Room schema export
         ksp {
             arg("room.schemaLocation", "$projectDir/schemas")
@@ -112,6 +115,15 @@ dependencies {
 
     // DataStore (for preferences)
     implementation("androidx.datastore:datastore-preferences:1.1.1")
+
+    // AppAuth for OIDC/OAuth 2.0
+    implementation("net.openid:appauth:0.11.1")
+
+    // Encrypted SharedPreferences for secure token storage
+    implementation("androidx.security:security-crypto:1.1.0-alpha06")
+
+    // Coil for loading profile pictures
+    implementation("io.coil-kt:coil-compose:2.5.0")
 
     // Testing - JUnit 5
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.11.4")
