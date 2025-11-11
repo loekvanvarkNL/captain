@@ -190,17 +190,19 @@ private fun PlayerCard(
                 tint = MaterialTheme.colorScheme.primary,
             )
             Column(modifier = Modifier.weight(1f)) {
+                val displayName =
+                    if (player.number != null) {
+                        "#${player.number} ${player.firstName}"
+                    } else {
+                        player.firstName
+                    }
                 Text(
-                    text = player.name,
+                    text = displayName,
                     style = MaterialTheme.typography.titleMedium,
                 )
+                val positionsText = player.preferredPositions.joinToString(", ") { it.abbreviation }
                 Text(
-                    text =
-                        if (player.number != null) {
-                            "#${player.number} • ${player.preferredPositions.joinToString(", ")}"
-                        } else {
-                            player.preferredPositions.joinToString(", ")
-                        },
+                    text = positionsText,
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )

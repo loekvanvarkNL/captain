@@ -15,7 +15,7 @@ import com.lvark.teamcaptain.model.entity.Player
         Attendance::class,
         LineupAssignment::class,
     ],
-    version = 1,
+    version = 2,
     exportSchema = true,
 )
 @TypeConverters(Converters::class)

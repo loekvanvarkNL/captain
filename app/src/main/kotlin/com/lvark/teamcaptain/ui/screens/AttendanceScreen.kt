@@ -136,7 +136,7 @@ private fun PlayerAttendanceCard(
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             Text(
-                text = playerAttendance.player.name,
+                text = playerAttendance.player.fullName,
                 style = MaterialTheme.typography.titleMedium,
             )
 

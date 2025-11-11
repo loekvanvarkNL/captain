@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface PlayerDao {
-    @Query("SELECT * FROM players ORDER BY name ASC")
+    @Query("SELECT * FROM players ORDER BY firstName ASC, surname ASC")
     fun getAllPlayers(): Flow<List<Player>>
 
     @Query("SELECT * FROM players WHERE id = :playerId")

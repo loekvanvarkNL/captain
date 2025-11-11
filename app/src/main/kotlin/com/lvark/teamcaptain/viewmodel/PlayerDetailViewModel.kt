@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.lvark.teamcaptain.data.repository.PlayerRepository
 import com.lvark.teamcaptain.model.entity.Player
 import com.lvark.teamcaptain.model.entity.Position
+import com.lvark.teamcaptain.model.entity.PreferredFoot
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -32,8 +33,10 @@ class PlayerDetailViewModel
                 )
 
         fun updatePlayer(
-            name: String,
+            firstName: String,
+            surname: String,
             number: Int?,
+            preferredFoot: PreferredFoot,
             preferredPositions: List<Position>,
             onSuccess: () -> Unit,
         ) {
@@ -41,8 +44,10 @@ class PlayerDetailViewModel
                 player.value?.let { currentPlayer ->
                     val updatedPlayer =
                         currentPlayer.copy(
-                            name = name,
+                            firstName = firstName,
+                            surname = surname,
                             number = number,
+                            preferredFoot = preferredFoot,
                             preferredPositions = preferredPositions,
                         )
                     playerRepository.updatePlayer(updatedPlayer)

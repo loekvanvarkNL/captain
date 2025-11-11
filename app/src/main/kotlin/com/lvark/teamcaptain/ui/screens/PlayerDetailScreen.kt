@@ -1,9 +1,11 @@
 package com.lvark.teamcaptain.ui.screens
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -22,6 +24,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -33,6 +36,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
@@ -41,6 +45,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.lvark.teamcaptain.R
 import com.lvark.teamcaptain.model.entity.Position
+import com.lvark.teamcaptain.model.entity.PreferredFoot
 import com.lvark.teamcaptain.viewmodel.PlayerDetailViewModel
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
@@ -53,16 +58,21 @@ fun PlayerDetailScreen(
 ) {
     val player by viewModel.player.collectAsStateWithLifecycle()
 
-    var name by remember { mutableStateOf("") }
+    var firstName by remember { mutableStateOf("") }
+    var surname by remember { mutableStateOf("") }
     var numberText by remember { mutableStateOf("") }
+    var selectedFoot by remember { mutableStateOf(PreferredFoot.RIGHT) }
     var selectedPositions by remember { mutableStateOf(setOf<Position>()) }
-    var nameError by remember { mutableStateOf(false) }
+    var firstNameError by remember { mutableStateOf(false) }
+    var surnameError by remember { mutableStateOf(false) }
     var showDeleteDialog by remember { mutableStateOf(false) }
 
     LaunchedEffect(player) {
         player?.let {
-            name = it.name
+            firstName = it.firstName
+            surname = it.surname
             numberText = it.number?.toString() ?: ""
+            selectedFoot = it.preferredFoot
             selectedPositions = it.preferredPositions.toSet()
         }
     }
@@ -71,7 +81,7 @@ fun PlayerDetailScreen(
         AlertDialog(
             onDismissRequest = { showDeleteDialog = false },
             title = { Text(stringResource(R.string.team_delete_player_title)) },
-            text = { Text(stringResource(R.string.team_delete_player_message, name)) },
+            text = { Text(stringResource(R.string.team_delete_player_message, "$firstName $surname")) },
             confirmButton = {
                 TextButton(
                     onClick = {
@@ -92,7 +102,7 @@ fun PlayerDetailScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(player?.name ?: stringResource(R.string.team_player_details)) },
+                title = { Text(player?.fullName ?: stringResource(R.string.team_player_details)) },
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(
@@ -127,17 +137,35 @@ fun PlayerDetailScreen(
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             OutlinedTextField(
-                value = name,
+                value = firstName,
                 onValueChange = {
-                    name = it
-                    nameError = false
+                    firstName = it
+                    firstNameError = false
                 },
-                label = { Text(stringResource(R.string.team_player_name)) },
+                label = { Text(stringResource(R.string.team_player_first_name)) },
                 modifier = Modifier.fillMaxWidth(),
-                isError = nameError,
+                isError = firstNameError,
                 supportingText =
-                    if (nameError) {
-                        { Text(stringResource(R.string.team_name_required)) }
+                    if (firstNameError) {
+                        { Text(stringResource(R.string.team_first_name_required)) }
+                    } else {
+                        null
+                    },
+                singleLine = true,
+            )
+
+            OutlinedTextField(
+                value = surname,
+                onValueChange = {
+                    surname = it
+                    surnameError = false
+                },
+                label = { Text(stringResource(R.string.team_player_surname)) },
+                modifier = Modifier.fillMaxWidth(),
+                isError = surnameError,
+                supportingText =
+                    if (surnameError) {
+                        { Text(stringResource(R.string.team_surname_required)) }
                     } else {
                         null
                     },
@@ -155,25 +183,68 @@ fun PlayerDetailScreen(
 
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 Text(
+                    text = stringResource(R.string.team_preferred_foot),
+                    style = MaterialTheme.typography.titleMedium,
+                )
+                Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                    PreferredFoot.entries.forEach { foot ->
+                        Row(
+                            modifier =
+                                Modifier
+                                    .fillMaxWidth()
+                                    .clickable { selectedFoot = foot },
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) {
+                            RadioButton(
+                                selected = selectedFoot == foot,
+                                onClick = { selectedFoot = foot },
+                            )
+                            Text(
+                                text =
+                                    when (foot) {
+                                        PreferredFoot.LEFT -> stringResource(R.string.team_preferred_foot_left)
+                                        PreferredFoot.RIGHT -> stringResource(R.string.team_preferred_foot_right)
+                                        PreferredFoot.BOTH -> stringResource(R.string.team_preferred_foot_both)
+                                    },
+                                style = MaterialTheme.typography.bodyLarge,
+                                modifier = Modifier.padding(start = 8.dp),
+                            )
+                        }
+                    }
+                }
+            }
+
+            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                Text(
                     text = stringResource(R.string.team_preferred_positions),
                     style = MaterialTheme.typography.titleMedium,
+                )
+                Text(
+                    text = stringResource(R.string.team_positions_limit),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
                 FlowRow(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     verticalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
                     Position.entries.forEach { position ->
+                        val isSelected = position in selectedPositions
+                        val canSelect = isSelected || selectedPositions.size < 2
                         FilterChip(
-                            selected = position in selectedPositions,
+                            selected = isSelected,
                             onClick = {
-                                selectedPositions =
-                                    if (position in selectedPositions) {
-                                        selectedPositions - position
-                                    } else {
-                                        selectedPositions + position
-                                    }
+                                if (canSelect) {
+                                    selectedPositions =
+                                        if (isSelected) {
+                                            selectedPositions - position
+                                        } else {
+                                            selectedPositions + position
+                                        }
+                                }
                             },
-                            label = { Text(position.name) },
+                            label = { Text("${position.abbreviation} - ${position.fullName}") },
+                            enabled = canSelect,
                         )
                     }
                 }
@@ -181,12 +252,21 @@ fun PlayerDetailScreen(
 
             Button(
                 onClick = {
-                    if (name.isBlank()) {
-                        nameError = true
-                    } else {
+                    var hasError = false
+                    if (firstName.isBlank()) {
+                        firstNameError = true
+                        hasError = true
+                    }
+                    if (surname.isBlank()) {
+                        surnameError = true
+                        hasError = true
+                    }
+                    if (!hasError) {
                         viewModel.updatePlayer(
-                            name = name.trim(),
+                            firstName = firstName.trim(),
+                            surname = surname.trim(),
                             number = numberText.toIntOrNull(),
+                            preferredFoot = selectedFoot,
                             preferredPositions = selectedPositions.toList(),
                             onSuccess = onNavigateBack,
                         )

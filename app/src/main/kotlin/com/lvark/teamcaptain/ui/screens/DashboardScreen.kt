@@ -1,5 +1,6 @@
 package com.lvark.teamcaptain.ui.screens
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -83,6 +84,7 @@ fun DashboardScreen(
                             tint = MaterialTheme.colorScheme.primary,
                         )
                     },
+                    onClick = onNavigateToTeam,
                 ) {
                     Text(
                         text = stringResource(R.string.team_player_count, playerCount),
@@ -91,10 +93,10 @@ fun DashboardScreen(
                 }
             }
 
-            // Next match card
+            // Matches card
             item {
                 DashboardCard(
-                    title = stringResource(R.string.dashboard_next_match),
+                    title = stringResource(R.string.matches_title),
                     icon = {
                         Icon(
                             imageVector = Icons.Default.SportsSoccer,
@@ -102,8 +104,15 @@ fun DashboardScreen(
                             tint = MaterialTheme.colorScheme.primary,
                         )
                     },
+                    onClick = onNavigateToMatches,
                 ) {
                     if (nextMatch != null) {
+                        Text(
+                            text = stringResource(R.string.dashboard_next_match),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                        Spacer(modifier = Modifier.height(4.dp))
                         MatchSummary(match = nextMatch!!)
                     } else {
                         Text(
@@ -148,10 +157,14 @@ fun DashboardScreen(
 private fun DashboardCard(
     title: String,
     icon: @Composable () -> Unit,
+    onClick: () -> Unit,
     content: @Composable () -> Unit,
 ) {
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .clickable(onClick = onClick),
         colors =
             CardDefaults.cardColors(
                 containerColor = MaterialTheme.colorScheme.surface,

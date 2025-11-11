@@ -2,6 +2,7 @@ package com.lvark.teamcaptain.data.local
 
 import androidx.room.TypeConverter
 import com.lvark.teamcaptain.model.entity.Position
+import com.lvark.teamcaptain.model.entity.PreferredFoot
 
 class Converters {
     @TypeConverter
@@ -18,6 +19,20 @@ class Converters {
             } catch (e: IllegalArgumentException) {
                 null
             }
+        }
+    }
+
+    @TypeConverter
+    fun fromPreferredFoot(preferredFoot: PreferredFoot): String {
+        return preferredFoot.name
+    }
+
+    @TypeConverter
+    fun toPreferredFoot(preferredFootString: String): PreferredFoot {
+        return try {
+            PreferredFoot.valueOf(preferredFootString)
+        } catch (e: IllegalArgumentException) {
+            PreferredFoot.RIGHT
         }
     }
 }
