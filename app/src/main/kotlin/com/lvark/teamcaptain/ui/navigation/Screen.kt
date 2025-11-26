@@ -28,4 +28,8 @@ sealed class Screen(val route: String) {
     data object Lineup : Screen("lineup/{matchId}") {
         fun createRoute(matchId: Long) = "lineup/$matchId"
     }
+
+    data object BlockView : Screen("blockview/{matchId}") {
+        fun createRoute(matchId: Long) = "blockview/$matchId"
+    }
 }

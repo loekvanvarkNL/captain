@@ -19,6 +19,7 @@ class AddMatchViewModel
             dateTime: Long,
             location: String?,
             isHome: Boolean,
+            totalMatchDurationMinutes: Int,
             numberOfBlocks: Int,
             blockDurationMinutes: Int,
             onSuccess: () -> Unit,
@@ -30,6 +31,7 @@ class AddMatchViewModel
                         dateTime = dateTime,
                         location = location,
                         isHome = isHome,
+                        totalMatchDurationMinutes = totalMatchDurationMinutes,
                         numberOfBlocks = numberOfBlocks,
                         blockDurationMinutes = blockDurationMinutes,
                     )

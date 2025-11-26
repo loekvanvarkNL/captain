@@ -11,8 +11,15 @@ data class Match(
     val dateTime: Long,
     val location: String? = null,
     val isHome: Boolean = true,
-    val numberOfBlocks: Int = 3,
+    val totalMatchDurationMinutes: Int = 40,
+    val numberOfBlocks: Int = 4,
     val blockDurationMinutes: Int = 10,
     val createdAt: Long = System.currentTimeMillis(),
     val updatedAt: Long = System.currentTimeMillis(),
-)
+) {
+    val totalMatchTimeFormatted: String
+        get() {
+            val halfDuration = totalMatchDurationMinutes / 2
+            return "2x$halfDuration min"
+        }
+}

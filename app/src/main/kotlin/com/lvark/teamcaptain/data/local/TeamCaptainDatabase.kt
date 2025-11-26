@@ -17,8 +17,8 @@ import com.lvark.teamcaptain.model.entity.User
         LineupAssignment::class,
         User::class,
     ],
-    version = 3,
-    exportSchema = true,
+    version = 4,
+    exportSchema = false,
 )
 @TypeConverters(Converters::class)
 abstract class TeamCaptainDatabase : RoomDatabase() {

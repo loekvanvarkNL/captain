@@ -64,7 +64,11 @@
     <string name="matches_select_date">Select date</string>
     <string name="matches_select_time">Select time</string>
     <string name="matches_home_match">Home Match</string>
+    <string name="matches_match_format_section">Match Format</string>
+    <string name="matches_total_duration">Total Match Duration (minutes)</string>
+    <string name="matches_total_duration_hint">E.g., 40 for 2x20min or 4x10min</string>
     <string name="matches_number_of_blocks">Number of Blocks</string>
+    <string name="matches_blocks_hint">Substitution happens between blocks</string>
     <string name="matches_block_duration">Block Duration (minutes)</string>
     <string name="matches_block_duration_hint">Duration of each substitution block</string>
     <string name="matches_match_details">Match Details</string>
@@ -83,6 +87,7 @@
 
     <!-- Lineup -->
     <string name="lineup_title">Starting Lineup</string>
+    <string name="lineup_builder_title">Lineup: vs %s</string>
     <string name="lineup_select_formation">Select Formation</string>
     <string name="lineup_field_players">Field Players (5)</string>
     <string name="lineup_goalkeeper">Goalkeeper (1)</string>
@@ -90,6 +95,34 @@
     <string name="lineup_match_blocks">Match Blocks</string>
     <string name="lineup_block_duration">Block Duration (minutes)</string>
     <string name="lineup_coming_soon">Lineup builder coming soon in Phase 4!</string>
+    <string name="lineup_block_number">Block %1$d of %2$d</string>
+    <string name="lineup_previous">Previous</string>
+    <string name="lineup_next">Next</string>
+    <string name="lineup_previous_block">Go to previous block</string>
+    <string name="lineup_next_block">Go to next block</string>
+    <string name="lineup_auto_rotate">Auto-Generate Equal Playing Time</string>
+    <string name="lineup_field">Football Pitch</string>
+    <string name="lineup_bench">Bench (%d players)</string>
+    <string name="lineup_all_players_on_field">All players are on the field</string>
+    <string name="lineup_save_block">Save Current Block</string>
+    <string name="lineup_not_enough_players">Not enough players present. Need at least 6 players.</string>
+    <string name="lineup_view_block_overview">View Block Overview</string>
+
+    <!-- Block View -->
+    <string name="block_view_title">Block Overview: vs %s</string>
+    <string name="block_view_overview">Match Overview</string>
+    <string name="block_view_total_duration">Total Duration</string>
+    <string name="block_view_number_of_blocks">Number of Blocks</string>
+    <string name="block_view_block_duration">Block Duration</string>
+    <string name="block_view_minutes">%d min</string>
+    <string name="block_view_blocks_title">Blocks</string>
+    <string name="block_view_block_number">Block %d</string>
+    <string name="block_view_no_players_assigned">No players assigned yet</string>
+    <string name="block_view_players_count">%d players on field</string>
+    <string name="block_view_playing_time_title">Playing Time Summary</string>
+    <string name="block_view_blocks_played">Blocks: %s</string>
+    <string name="block_view_total_time">total</string>
+    <string name="block_view_no_lineup">No lineup created yet. Use the Lineup Builder to create one.</string>
 
     <!-- Common -->
     <string name="common_save">Save</string>

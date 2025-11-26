@@ -30,6 +30,12 @@ interface LineupRepository {
         matchId: Long,
         blockNumber: Int,
     )
+
+    suspend fun saveLineupForBlock(
+        matchId: Long,
+        blockNumber: Int,
+        assignments: List<LineupAssignment>,
+    )
 }
 
 @Singleton
@@ -84,5 +90,16 @@ class LineupRepositoryImpl
             blockNumber: Int,
         ) {
             lineupAssignmentDao.deleteAssignmentsForBlock(matchId, blockNumber)
+        }
+
+        override suspend fun saveLineupForBlock(
+            matchId: Long,
+            blockNumber: Int,
+            assignments: List<LineupAssignment>,
+        ) {
+            // Delete existing assignments for this block
+            deleteAssignmentsForBlock(matchId, blockNumber)
+            // Insert new assignments
+            insertAssignments(assignments)
         }
     }

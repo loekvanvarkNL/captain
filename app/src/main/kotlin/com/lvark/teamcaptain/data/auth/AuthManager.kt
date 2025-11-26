@@ -2,7 +2,7 @@ package com.lvark.teamcaptain.data.auth
 
 import android.content.Context
 import android.net.Uri
-import com.lvark.teamcaptain.R
+import com.lvark.teamcaptain.BuildConfig
 import com.lvark.teamcaptain.data.local.UserDao
 import com.lvark.teamcaptain.model.entity.AuthProvider
 import com.lvark.teamcaptain.model.entity.User
@@ -54,8 +54,8 @@ class AuthManager
         ): AuthorizationRequest {
             val clientId =
                 when (provider) {
-                    AuthProvider.GOOGLE -> context.getString(R.string.google_client_id)
-                    AuthProvider.GITHUB -> context.getString(R.string.github_client_id)
+                    AuthProvider.GOOGLE -> BuildConfig.GOOGLE_CLIENT_ID
+                    AuthProvider.GITHUB -> BuildConfig.GITHUB_CLIENT_ID
                 }
 
             val redirectUri =
