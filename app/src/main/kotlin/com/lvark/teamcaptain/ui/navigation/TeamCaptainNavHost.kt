@@ -11,7 +11,9 @@ import com.lvark.teamcaptain.model.entity.User
 import com.lvark.teamcaptain.ui.screens.AddMatchScreen
 import com.lvark.teamcaptain.ui.screens.AddPlayerScreen
 import com.lvark.teamcaptain.ui.screens.AttendanceScreen
+import com.lvark.teamcaptain.ui.screens.BlockViewScreen
 import com.lvark.teamcaptain.ui.screens.DashboardScreen
+import com.lvark.teamcaptain.ui.screens.LineupBuilderScreen
 import com.lvark.teamcaptain.ui.screens.LoginScreen
 import com.lvark.teamcaptain.ui.screens.MatchDetailScreen
 import com.lvark.teamcaptain.ui.screens.MatchListScreen
@@ -124,12 +126,31 @@ fun TeamCaptainNavHost(
             )
         }
 
-        // Lineup screen - Phase 4 (not yet implemented)
+        // Lineup builder screen
         composable(
             route = Screen.Lineup.route,
             arguments = listOf(navArgument("matchId") { type = NavType.LongType }),
-        ) {
-            // Placeholder for Phase 4
+        ) { backStackEntry ->
+            val matchId = backStackEntry.arguments?.getLong("matchId")
+            LineupBuilderScreen(
+                matchId = matchId,
+                onNavigateBack = { navController.popBackStack() },
+                onNavigateToBlockView = { mId ->
+                    navController.navigate(Screen.BlockView.createRoute(mId))
+                },
+            )
+        }
+
+        // Block view screen
+        composable(
+            route = Screen.BlockView.route,
+            arguments = listOf(navArgument("matchId") { type = NavType.LongType }),
+        ) { backStackEntry ->
+            val matchId = backStackEntry.arguments?.getLong("matchId")
+            BlockViewScreen(
+                matchId = matchId,
+                onNavigateBack = { navController.popBackStack() },
+            )
         }
     }
 }

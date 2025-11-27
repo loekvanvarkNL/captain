@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -25,6 +27,31 @@ android {
 
         // AppAuth redirect URI scheme for OAuth
         manifestPlaceholders["appAuthRedirectScheme"] = "com.lvark.teamcaptain"
+
+        // OAuth credentials from EXTERNAL secure location
+        // Priority: 1. External credentials file, 2. Environment variables, 3. Empty
+        // Credentials are stored OUTSIDE the project directory for security
+        val credentialsFile = File(System.getProperty("user.home"), ".teamcaptain/credentials.properties")
+        val credentials = Properties()
+        if (credentialsFile.exists()) {
+            credentials.load(credentialsFile.inputStream())
+        }
+
+        buildConfigField(
+            "String",
+            "GITHUB_CLIENT_ID",
+            "\"${credentials.getProperty("CAPTAIN_GITHUB_CLIENT_ID") ?: System.getenv("CAPTAIN_GITHUB_CLIENT_ID") ?: ""}\"",
+        )
+        buildConfigField(
+            "String",
+            "GITHUB_CLIENT_SECRET",
+            "\"${credentials.getProperty("CAPTAIN_GITHUB_CLIENT_SECRET") ?: System.getenv("CAPTAIN_GITHUB_CLIENT_SECRET") ?: ""}\"",
+        )
+        buildConfigField(
+            "String",
+            "GOOGLE_CLIENT_ID",
+            "\"${credentials.getProperty("CAPTAIN_GOOGLE_CLIENT_ID") ?: System.getenv("CAPTAIN_GOOGLE_CLIENT_ID") ?: ""}\"",
+        )
 
         // Room schema export
         ksp {

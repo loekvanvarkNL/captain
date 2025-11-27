@@ -26,7 +26,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.lvark.teamcaptain.R
@@ -146,12 +145,12 @@ fun MatchDetailScreen(
                     }
                 }
                 1 -> {
-                    // Lineup screen placeholder - Phase 4
-                    Text(
-                        text = stringResource(R.string.lineup_coming_soon),
-                        modifier = Modifier.padding(16.dp),
-                        style = MaterialTheme.typography.bodyLarge,
-                    )
+                    // Navigate to lineup builder when tab is selected
+                    matchId?.let {
+                        androidx.compose.runtime.LaunchedEffect(Unit) {
+                            onNavigateToLineup(it)
+                        }
+                    }
                 }
             }
         }

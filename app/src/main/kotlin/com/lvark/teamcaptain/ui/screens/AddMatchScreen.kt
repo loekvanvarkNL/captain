@@ -58,8 +58,9 @@ fun AddMatchScreen(
     var opponent by remember { mutableStateOf("") }
     var location by remember { mutableStateOf("") }
     var isHome by remember { mutableStateOf(true) }
-    var numberOfBlocks by remember { mutableStateOf("2") }
-    var blockDuration by remember { mutableStateOf("15") }
+    var totalMatchDuration by remember { mutableStateOf("40") }
+    var numberOfBlocks by remember { mutableStateOf("4") }
+    var blockDuration by remember { mutableStateOf("10") }
 
     var selectedDateMillis by remember { mutableStateOf(System.currentTimeMillis()) }
     var selectedHour by remember { mutableStateOf(14) }
@@ -238,6 +239,22 @@ fun AddMatchScreen(
                 )
             }
 
+            Text(
+                text = stringResource(R.string.matches_match_format_section),
+                style = MaterialTheme.typography.titleMedium,
+                modifier = Modifier.padding(top = 8.dp),
+            )
+
+            OutlinedTextField(
+                value = totalMatchDuration,
+                onValueChange = { totalMatchDuration = it.filter { char -> char.isDigit() } },
+                label = { Text(stringResource(R.string.matches_total_duration)) },
+                modifier = Modifier.fillMaxWidth(),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                singleLine = true,
+                supportingText = { Text(stringResource(R.string.matches_total_duration_hint)) },
+            )
+
             OutlinedTextField(
                 value = numberOfBlocks,
                 onValueChange = { numberOfBlocks = it.filter { char -> char.isDigit() } },
@@ -245,6 +262,7 @@ fun AddMatchScreen(
                 modifier = Modifier.fillMaxWidth(),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 singleLine = true,
+                supportingText = { Text(stringResource(R.string.matches_blocks_hint)) },
             )
 
             OutlinedTextField(
@@ -273,8 +291,9 @@ fun AddMatchScreen(
                             dateTime = calendar.timeInMillis,
                             location = location.trim().takeIf { it.isNotBlank() },
                             isHome = isHome,
-                            numberOfBlocks = numberOfBlocks.toIntOrNull() ?: 2,
-                            blockDurationMinutes = blockDuration.toIntOrNull() ?: 15,
+                            totalMatchDurationMinutes = totalMatchDuration.toIntOrNull() ?: 40,
+                            numberOfBlocks = numberOfBlocks.toIntOrNull() ?: 4,
+                            blockDurationMinutes = blockDuration.toIntOrNull() ?: 10,
                             onSuccess = onNavigateBack,
                         )
                     }

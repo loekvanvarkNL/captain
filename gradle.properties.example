@@ -1,0 +1,22 @@
+# TeamCaptain OAuth Configuration Template
+#
+# INSTRUCTIONS:
+# 1. Copy this file to 'gradle.properties' (without .example)
+# 2. Fill in your OAuth credentials
+# 3. NEVER commit gradle.properties to Git (it's in .gitignore)
+#
+# See OAUTH_SETUP.md for how to get these credentials
+
+# Google OAuth Client ID
+# Get from: https://console.cloud.google.com
+CAPTAIN_GOOGLE_CLIENT_ID=your_google_client_id_here
+
+# GitHub OAuth Client ID and Secret
+# Get from: https://github.com/settings/developers
+CAPTAIN_GITHUB_CLIENT_ID=your_github_client_id_here
+CAPTAIN_GITHUB_CLIENT_SECRET=your_github_client_secret_here
+
+# Gradle JVM arguments (optional, for better build performance)
+org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8
+org.gradle.parallel=true
+org.gradle.caching=true
